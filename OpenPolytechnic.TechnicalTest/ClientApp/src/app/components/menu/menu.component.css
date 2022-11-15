@@ -1,0 +1,51 @@
+.menu-body {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    margin-bottom: 25px;
+}
+
+.menu-name {
+    color: #ffdede;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: #984b4b8f;
+    font-size: 50px;
+    margin-top: 25px;
+}
+
+.menu-item {
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 5px;
+}
+
+.menu-title {
+    display: flex;
+    column-gap: 5px;
+}
+
+.menu-item-name {
+    color: #ec9797;
+}
+
+.menu-links {
+  display: flex;
+  column-gap: 25px;
+  margin-top: 25px;
+}
+
+.menu-link {
+  color: #d69494;
+  font: 25px 200 small-caps Arial;
+  text-decoration: none;
+}
+
+.menu-link:hover {
+  text-decoration: none;
+}
+
+.menu-link:visited {
+  color: #d69494;
+  font: 25px 200 small-caps Arial;
+  text-decoration: none;
+}

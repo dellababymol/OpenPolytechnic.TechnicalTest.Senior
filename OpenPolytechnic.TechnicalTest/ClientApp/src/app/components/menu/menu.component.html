@@ -1,0 +1,18 @@
+<div class="menu-links">
+  <a class="menu-link" [routerLink]="['/menu/standard']">Standard Menu</a>
+  <a class="menu-link" [routerLink]="['/menu/weekend']">Weekend Menu</a>
+  <a class="menu-link" [routerLink]="['/menu/catering']">Catering Menu</a>
+</div>
+<div *ngIf="(menu$ | async) as menu">
+  <h3 class="menu-name">{{menu.name}}</h3>
+  <div class="menu-body">
+    <div *ngFor="let menuItem of menu.items" class="menu-item">
+      <div class="menu-title">
+        <div><b class="menu-item-name">{{menuItem.name}}</b></div>
+        <div>{{menuItem.cost | currency : 'NZD' : true : '1.2-2'}}</div>
+        <div><span *ngIf="menuItem.childrensMenu">👶</span></div>
+      </div>
+      <div><i>{{menuItem.description}}</i></div>
+    </div>
+  </div>
+</div>

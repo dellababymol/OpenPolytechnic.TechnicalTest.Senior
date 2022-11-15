@@ -1,0 +1,14 @@
+<body>
+  <div class="header">
+    <img class="header-logo" [style.background-image]="'url(burger-vector.png)'"/>
+    <div class="header-name">Fen's Emporium</div>
+  </div>
+  <div class="nav-links">
+    <a class="nav-link" [routerLink]="['./menu/standard']">Menu</a>
+    <a class="nav-link" [routerLink]="['./order']">Order</a>
+  </div>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+  <div class="buffer"></div>
+</body>

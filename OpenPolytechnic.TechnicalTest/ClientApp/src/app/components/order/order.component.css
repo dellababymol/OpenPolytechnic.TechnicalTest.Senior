@@ -1,0 +1,77 @@
+.mat-form-field.mat-focused .mat-form-field-ripple {
+  background-color: #fab7b7;
+}
+
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+  background-color: #fab7b7;
+  color: #fff;
+}
+
+.customer-order {
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 10px;
+    margin-bottom:5px;
+}
+
+.mat-raised-button.mat-accent {
+  margin-top: 10px;
+  background-color: #e68383;
+}
+
+.customer-number {
+  color: #e68383;
+  font:400 small-caps 20px Arial;
+  margin-bottom: 5px;
+}
+
+.order-container {
+    margin-top: 20px;
+}
+
+.order {
+
+}
+
+.order-items {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  column-gap: 8px;
+}
+
+.order-heading {
+  color: #e68383;
+  font: 400 small-caps 18px Arial;
+}
+
+.place-order-wrapper {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  min-height: 50px;
+}
+
+.receipt-heading {
+  color: #e68383;
+  font: 400 small-caps 20px Arial;
+  margin-bottom: 5px;
+  margin-top: 25px;
+}
+
+.cost-summary {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.original-cost {
+    text-decoration: line-through;
+}
+
+.total-amount {
+  font: 400 small-caps 20px Arial;
+  margin-bottom: 5px;
+}
+
+b.total-amount {
+  color: #e68383;
+}

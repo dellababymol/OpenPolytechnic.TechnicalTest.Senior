@@ -1,0 +1,74 @@
+<div class="order-summary" *ngIf="(orderSummary$ | async) as orderSummary; else placeOrderBlock">
+  <h3 class="receipt-heading">Receipt:</h3>
+  <div *ngFor="let item of orderSummary.items">
+    {{item.name}}
+  </div>
+  <div class="cost-summary">
+    <div *ngIf="!!orderSummary.surcharge || !!orderSummary.discountAmount">
+      <b>Order cost: </b> <span class="original-cost">{{orderSummary.originalCost | currency : 'NZD' : true : '1.2-2'}}</span>
+    </div>
+    <div *ngIf="!orderSummary.surcharge && !orderSummary.discountAmount">
+      <b>Order cost: </b> <span>
+        {{orderSummary.originalCost | currency : 'NZD' : true : '1.2-2'}}
+      </span>
+    </div>
+
+    <div *ngIf="!!orderSummary.surcharge"><b>Surcharge: </b> <span>{{orderSummary.surcharge | currency : 'NZD' : true : '1.2-2'}}</span></div>
+    <div *ngIf="!!orderSummary.discountAmount"><b>Discount: </b> <span>{{orderSummary.discountAmount | currency : 'NZD' : true : '1.2-2'}}</span></div>
+    <div class="total-amount"><b class="total-amount">Total Paid: </b> <span>{{orderSummary.totalCost | currency : 'NZD' : true : '1.2-2'}}</span></div>
+  </div>
+  <button mat-raised-button color="accent" (click)="placeNewOrder()">Place new order</button>
+</div>
+
+<ng-template #placeOrderBlock>
+  <div class="order-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Select a menu</mat-label>
+      <mat-select [(value)]="chosenMenu" (selectionChange)="onMenuSelect(chosenMenu)">
+        <mat-option>None</mat-option>
+        <mat-option *ngFor="let menu of availableMenus" [value]="menu">{{menu | titlecase}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div *ngIf="(currentMenu$ | async) as currentMenu">
+      <div>
+        <!--Form-->
+        <div *ngFor="let order of individualOrders; index as customerIndex">
+          <div class="customer-order">
+            <div class="customer-number">
+              Customer #{{customerIndex + 1}}
+            </div>
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>Customer pricing</mat-label>
+                <mat-select [(value)]="order.customerType">
+                  <mat-option *ngFor="let customer of customerTypes" [value]="customer">{{CustomerType[customer] | titlecase}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="order">
+              <div class="order-heading">Order:</div>
+              <div class="order-items">
+                <div *ngFor="let orderedItem of order.menuItemIds; index as individualOrderItemIndex; trackBy: trackBy">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Menu item</mat-label>
+                    <mat-select [value]="orderedItem" (selectionChange)="selectItemForOrder($event, customerIndex, individualOrderItemIndex);">
+                      <mat-option *ngFor="let menuItem of currentMenu.items" [value]="menuItem.id">{{menuItem.name | titlecase}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+              <button mat-raised-button color="accent" (click)="addItemForCustomer(customerIndex)">Add item</button>
+            </div>
+          </div>
+        </div>
+        <button mat-raised-button color="accent" (click)="addCustomer()">Add customer</button>
+        <div class="place-order-wrapper">
+          <button mat-raised-button color="basic" (click)="placeOrder()">Place order</button>
+        </div>
+        <!--End Form-->
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+
